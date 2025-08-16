@@ -1,2 +1,740 @@
-# GIISTOKFEST2025.github.io
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TOK FEST 2025</title>
 
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <meta name="color-scheme" content="light dark">
+
+  <style>
+    /* -------------------------
+       Reset & Base
+       ------------------------- */
+    :root{
+      --bg: linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%);
+      --glass: rgba(255,255,255,0.55);
+      --glass-strong: rgba(255,255,255,0.72);
+      --muted: #6b7280;
+      --primary: #007aff; /* apple blue */
+      --accent: #ff2d55;
+      --card-shadow: 0 8px 30px rgba(12,18,30,0.08);
+      --glass-border: rgba(255,255,255,0.45);
+      --radius: 14px;
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    html,body{ height:100%; margin:0; background:var(--bg); color:#05203a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    *{ box-sizing:border-box; }
+
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce){
+      :root{ --reduce-motion:1; }
+    }
+
+    /* -------------------------
+       Page layout
+       ------------------------- */
+    .page{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    header{ position:fixed; top:18px; left:50%; transform:translateX(-50%); width:92%; max-width:1200px; z-index:40; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .brand{
+      display:flex; align-items:center; gap:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.40));
+      backdrop-filter: blur(8px) saturate(120%);
+      border-radius:999px;
+      padding:8px 12px;
+      box-shadow:var(--card-shadow);
+      border: 1px solid var(--glass-border);
+    }
+    .brand img{ width:42px; height:42px; object-fit:cover; border-radius:8px; }
+    .brand h1{ font-size:16px; margin:0; font-weight:700; letter-spacing:0.2px; }
+    nav{ display:flex; gap:12px; align-items:center; }
+
+    /* Fancy pill button used in header */
+    .pill{
+      padding:8px 14px; border-radius:999px; font-weight:600; font-size:14px; border:none;
+      background:transparent; cursor:pointer; transition:transform .22s cubic-bezier(.2,.9,.3,1);
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .pill:focus{ outline:3px solid rgba(0,122,255,0.12); outline-offset:2px; }
+
+    /* -------------------------
+       Hero
+       ------------------------- */
+    .hero{
+      position:relative;
+      padding:120px 20px 60px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:left;
+      min-height:560px;
+      overflow:visible;
+    }
+    .hero-inner{
+      width:100%;
+      max-width:1200px;
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:32px;
+      align-items:center;
+    }
+
+    /* Liquid glass card */
+    .glass-card{
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding:28px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(12px) saturate(120%);
+      position:relative;
+      overflow:hidden;
+      transition: transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s;
+    }
+    .glass-card:hover{ transform: translateY(-6px) scale(1.003); box-shadow: 0 18px 50px rgba(8,20,40,0.12); }
+
+    /* Hero left content */
+    .hero-left h2{ margin:0; font-size:14px; color:var(--muted); font-weight:600; }
+    .hero-left h1{ margin:10px 0 12px; font-size:46px; line-height:1.02; font-weight:800; letter-spacing:-1px; color:#031021; }
+    .hero-left p.lead{ margin:0 0 18px; color:#07334a; font-size:18px; max-width:46ch; }
+
+    .event-meta{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:18px; }
+    .meta-pill{ display:inline-flex; gap:10px; align-items:center; background:rgba(255,255,255,0.35); padding:10px 12px; border-radius:12px; font-weight:600; color:#062231; border:1px solid rgba(255,255,255,0.5); }
+    .meta-pill i{ opacity:0.95; }
+
+    .hero-cta{ display:flex; gap:12px; align-items:center; margin-top:6px; }
+    .btn{
+      padding:12px 18px; border-radius:12px; font-weight:700; border: none; cursor:pointer; font-size:15px; display:inline-flex; align-items:center; gap:10px;
+      transition: transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s, filter .18s;
+      position:relative; overflow:hidden;
+    }
+    /* Primary: glass-blue with subtle shine */
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(0,122,255,0.95), rgba(0,102,220,0.98));
+      color:white; box-shadow: 0 8px 30px rgba(0,100,230,0.16);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .btn-secondary{
+      background: rgba(255,255,255,0.65);
+      color: #023047; border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+    }
+    .btn:hover{ transform: translateY(-6px) scale(1.02); }
+    .btn:active{ transform: translateY(-2px) scale(1.01); }
+
+    /* fancy shine animation on hover (only for pointer devices) */
+    @media (hover: hover) and (pointer: fine){
+      .btn-primary::after{
+        content:""; position:absolute; left:-120%; top:0; bottom:0; width:40%; transform: skewX(-18deg) translateX(0);
+        background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.35), rgba(255,255,255,0.08));
+        transition: transform .9s cubic-bezier(.2,.9,.3,1);
+      }
+      .btn-primary:hover::after{ transform: translateX(220%) skewX(-18deg); }
+      .btn-secondary::after{ content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.06)); opacity:0; transition:opacity .3s; }
+      .btn-secondary:hover::after{ opacity:1; }
+    }
+
+    /* Right hero panel: stats + animated blobs */
+    .hero-right{ position:relative; display:flex; gap:16px; flex-direction:column; align-items:stretch; }
+    .stat{
+      display:flex; justify-content:space-between; align-items:center; gap:12px; padding:14px; border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0.45)); border:1px solid rgba(255,255,255,0.55);
+    }
+    .stat .num{ font-weight:800; font-size:22px; }
+    .stat .label{ color:var(--muted); font-weight:600; }
+
+    /* floaty background blobs */
+    .blob{
+      position:absolute; border-radius:50%; filter: blur(60px); opacity:0.55; z-index:-4;
+      animation: floaty 9s ease-in-out infinite;
+    }
+    .blob.b1{ width:360px; height:360px; left:-40px; top:-80px; background: radial-gradient(circle at 30% 30%, #cfe6ff 0%, #8fd3ff 60%, transparent 70%); animation-delay:0s; }
+    .blob.b2{ width:280px; height:280px; right:-60px; top:-20px; background: radial-gradient(circle at 70% 70%, #ffd6e0 0%, #ffb3c7 50%, transparent 65%); animation-delay:2s; }
+    .blob.b3{ width:180px; height:180px; right:40px; bottom:-50px; background: radial-gradient(circle at 60% 40%, #e8ffd8 0%, #b8ff9f 50%, transparent 65%); animation-delay:4s; }
+    @keyframes floaty{
+      0%{ transform: translateY(0) translateX(0) scale(1); }
+      50%{ transform: translateY(-18px) translateX(8px) scale(1.04); }
+      100%{ transform: translateY(0) translateX(0) scale(1); }
+    }
+
+    /* -------------------------
+       Sections: counters, cards, grid
+       ------------------------- */
+    main{ width:100%; margin-top:24px; display:block; padding:0 20px 60px; }
+    .container{ max-width:1200px; margin:0 auto; }
+
+    .counter-section{
+      margin-top:18px; margin-bottom:28px; display:flex; justify-content:center; align-items:center; gap:20px; flex-direction:column;
+    }
+    .counter-section h2{ margin:0; color:#07334a; font-weight:800; letter-spacing:-0.3px; }
+    .counter{ font-size:48px; font-weight:900; color:var(--primary); }
+    .counter-subtitle{ color:var(--muted); margin:0; }
+
+    /* Speakers grid */
+    .speakers{ display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:18px; margin:34px 0; }
+    .speaker-card{
+      display:flex; gap:12px; align-items:center; padding:14px; border-radius:14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.45));
+      border:1px solid rgba(255,255,255,0.6); box-shadow:var(--card-shadow); backdrop-filter: blur(8px);
+      transition: transform .22s cubic-bezier(.2,.9,.3,1), box-shadow .22s;
+    }
+    .speaker-card img{ width:76px; height:76px; object-fit:cover; border-radius:10px; flex-shrink:0; }
+    .speaker-card:hover{ transform: translateY(-8px); box-shadow:0 20px 60px rgba(6,22,40,0.12); }
+    .speaker-info h3{ margin:0; font-size:16px; }
+    .speaker-info p{ margin:4px 0 0; color:var(--muted); font-weight:600; }
+
+    /* Schedule timeline */
+    .schedule{ margin:28px 0; padding:18px; border-radius:12px; background:transparent; }
+    .timeline{ display:flex; flex-direction:column; gap:12px; }
+    .event-block{ display:flex; gap:12px; align-items:center; padding:12px; border-radius:12px; background:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.5); }
+    .event-time{ font-weight:800; min-width:66px; text-align:center; font-size:16px; color:var(--primary); }
+    .event-icon{ width:44px; height:44px; display:inline-flex; align-items:center; justify-content:center; border-radius:10px; background: linear-gradient(180deg,#fff,#f6f9ff); }
+    .event-title{ margin:0; font-weight:800; }
+    .event-desc{ margin:2px 0 0; color:var(--muted); }
+
+    /* About / stats */
+    .about{ margin:20px 0; padding:18px; border-radius:12px; }
+    .about-stats{ display:flex; gap:12px; margin-top:12px; flex-wrap:wrap; }
+    .statbox{ background:rgba(255,255,255,0.65); padding:14px; border-radius:12px; min-width:120px; text-align:center; border:1px solid rgba(255,255,255,0.55); }
+    .statbox .value{ font-weight:900; font-size:20px; color:#062231; }
+
+    /* Forms */
+    form{ display:flex; flex-direction:column; gap:12px; }
+    .form-group{ position:relative; }
+    input[type="text"], input[type="email"], textarea{
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(7,19,33,0.06);
+      background: rgba(255,255,255,0.85); font-size:15px; outline:none; transition: box-shadow .15s;
+    }
+    input:focus, textarea:focus{ box-shadow: 0 8px 26px rgba(3,31,65,0.06); border-color:rgba(0,122,255,0.22); }
+    textarea{ min-height:110px; resize:vertical; }
+
+    /* FAQs */
+    .faqs{ margin:22px 0; }
+    .faq{ background: rgba(255,255,255,0.6); border-radius:12px; padding:10px; border:1px solid rgba(255,255,255,0.5); }
+    .faq-question{ width:100%; display:flex; justify-content:space-between; align-items:center; background:transparent; border:none; padding:10px; cursor:pointer; font-weight:800; }
+    .faq-answer{ max-height:0; overflow:hidden; transition: max-height .35s ease; color:var(--muted); padding:0 10px; }
+
+    /* Contact & footer */
+    .contact-container{ display:grid; grid-template-columns: 1fr 380px; gap:18px; align-items:start; }
+    .socials{ display:flex; gap:10px; margin-top:14px; }
+    .social-icon{ display:inline-flex; width:40px; height:40px; align-items:center; justify-content:center; border-radius:10px; background:rgba(255,255,255,0.6); border:1px solid rgba(255,255,255,0.5); text-decoration:none; color:#05203a; }
+
+    footer{ margin-top:36px; padding:20px 0 48px; color:var(--muted); text-align:center; }
+
+    /* Theme toggle */
+    .theme-toggle{ position:fixed; right:18px; bottom:18px; width:48px; height:48px; border-radius:12px; border:none; background:linear-gradient(180deg,#fff,#f4f7ff); box-shadow: var(--card-shadow); cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:50; }
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      header{ left:12px; transform:none; width:calc(100% - 24px); }
+      .contact-container{ grid-template-columns: 1fr; }
+      .hero{ padding-top:90px; }
+    }
+    @media (max-width:520px){
+      .hero-left h1{ font-size:34px; }
+      .brand h1{ display:none; }
+      .stat .num{ font-size:18px; }
+    }
+
+    /* Reveal helper */
+    .reveal{ opacity:0; transform: translateY(14px) scale(0.995); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.9,.3,1); }
+    .reveal.visible{ opacity:1; transform:none; }
+
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header role="banner" aria-label="TOK Fest header"
+  style="background-color: rgba(26, 26, 26, 0.7);
+         padding: 15px;
+         position: sticky;
+         top: 0;
+         margin: 0;
+         z-index: 1000;
+         border-radius: 12px;">
+  <div class="brand" aria-hidden="false">
+    <img src="logo.png" alt="TOK Fest logo" onerror="this.style.visibility='hidden'">
+    <h1 style="color: white;">TOK FEST</h1>
+  </div>
+
+  <nav aria-label="Main navigation">
+    <button class="pill" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
+    <button class="pill" onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">Schedule</button>
+  </nav>
+</header>
+    
+    
+
+    <!-- HERO -->
+    <section class="hero" aria-label="Event hero">
+      <div class="blob b1" aria-hidden="true"></div>
+      <div class="blob b2" aria-hidden="true"></div>
+      <div class="blob b3" aria-hidden="true"></div>
+
+      <div class="hero-inner container reveal">
+        <!-- Left: main hero content -->
+        <div class="glass-card hero-left" role="region" aria-labelledby="heroTitle">
+          <h2 id="heroTitle">TOK Fest</h2>
+          <h1>Exploring Knowledge <br><span style="color:var(--muted); font-weight:600;">Through Perspectives — 2025</span></h1>
+          <p class="lead">A one-day immersive event where speakers, panels and interactive sessions challenge how we know what we know. Open for students and educators.</p>
+
+          <div class="event-meta" aria-hidden="false">
+            <div class="meta-pill"><i class="fas fa-calendar-alt"></i> <span>August 18, 2025</span></div>
+            <div class="meta-pill"><i class="fas fa-map-marker-alt"></i> <span>GIIS Punggol Smart Campus</span></div>
+            <div class="meta-pill"><i class="fas fa-users"></i> <span>400+ expected</span></div>
+          </div>
+
+          <div class="hero-cta">
+            <button class="btn btn-primary" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">
+              <i class="fa-solid fa-pen-to-square"></i> Register Now
+            </button>
+            <button class="btn btn-secondary" onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">
+              <i class="fa-solid fa-calendar-lines"></i> View Schedule
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: stats -->
+        <aside class="hero-right" role="complementary" aria-label="Event statistics">
+          <div class="glass-card stat" aria-hidden="true">
+            <div>
+              <div class="label">Expected Attendees</div>
+              <div class="num" style="font-size:28px; color:var(--primary); font-weight:900;">400+</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="label">Speakers</div>
+              <div class="num">6+</div>
+            </div>
+          </div>
+
+          <div class="glass-card stat" aria-hidden="true">
+            <div>
+              <div class="label">First Time Event</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="label">Participants</div>
+              <div class="num">400+</div>
+            </div>
+          </div>
+
+          <div class="glass-card" style="padding:12px; display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-weight:800; font-size:16px;">Quick Links</div>
+              <div style="color:var(--muted); font-size:13px;">Schedule • Speakers • FAQs</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-secondary" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <main role="main" class="container">
+
+      <!-- PARTICIPANT COUNTER -->
+      <section class="counter-section reveal" aria-label="Participant counter">
+        <h2>Total Participants</h2>
+        <div id="participant-counter" class="counter" aria-live="polite">0</div>
+        <p class="counter-subtitle">Join our growing community of knowledge seekers</p>
+      </section>
+
+      <!-- SPEAKERS GRID -->
+      <section class="reveal" aria-label="Guest speakers">
+        <h2 style="margin:0 0 12px;">Guest Speakers</h2>
+        <div class="speakers">
+          <!-- speaker cards: replace src with your images -->
+          <div class="speaker-card">
+            <img src="rincy-shamim.png" alt="Rincy Shamim" onerror="this.src='https://via.placeholder.com/160x160?text=Rincy'">
+            <div class="speaker-info">
+              <h3>Rincy Shamim</h3>
+              <p>Guest Speaker — AI & Ethics</p>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <img src="shamim-basheer.png" alt="Shamim Basheer" onerror="this.src='https://via.placeholder.com/160x160?text=Shamim'">
+            <div class="speaker-info">
+              <h3>Shamim Basheer</h3>
+              <p>Guest Speaker — Epistemology</p>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <img src="janice-see.png" alt="Janice See" onerror="this.src='https://via.placeholder.com/160x160?text=Janice'">
+            <div class="speaker-info">
+              <h3>Janice See</h3>
+              <p>Guest Speaker — Education</p>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <img src="rahul-singh.png" alt="Rahul Singh" onerror="this.src='https://via.placeholder.com/160x160?text=Rahul'">
+            <div class="speaker-info">
+              <h3>Rahul Singh</h3>
+              <p>Guest Speaker — Technology & Society</p>
+            </div>
+          </div>
+
+          <div class="speaker-card">
+            <img src="jacob-mok.png" alt="Jacob Mok" onerror="this.src='https://via.placeholder.com/160x160?text=Jacob'">
+            <div class="speaker-info">
+              <h3>Jacob Mok</h3>
+              <p>Guest Speaker — Media Studies</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="schedule reveal" id="schedule" aria-label="Event schedule">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 style="margin:0;">Event Flow</h2>
+            <p style="margin:6px 0 0; color:var(--muted);">A day of knowledge exploration</p>
+          </div>
+        </div>
+
+        <div class="timeline" style="margin-top:12px;">
+          <div class="event-block">
+            <div class="event-time">10:00-10:20</div>
+            <div class="event-icon"><i class="fas fa-microphone"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Welcoming speeches</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+
+          <div class="event-block">
+            <div class="event-time">10:20-10:30</div>
+            <div class="event-icon"><i class="fas fa-comments"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Opening ceremony</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+
+          <div class="event-block">
+            <div class="event-time">10:30-11:20</div>
+            <div class="event-icon"><i class="fas fa-comments"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">First Panel Discussion</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+          <div class="event-block">
+            <div class="event-time">11:20-12:00</div>
+            <div class="event-icon"><i class="fas fa-coffee"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Refreshments</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+          <div class="event-block">
+            <div class="event-time">12:00-12:50</div>
+            <div class="event-icon"><i class="fas fa-comments"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Second Panel Discussion</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+          
+          <div class="event-block">
+            <div class="event-time">12:50-13:00</div>
+            <div class="event-icon"><i class="fas fa-microphone"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Audience Engagement</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+          <div class="event-block">
+            <div class="event-time">13:00-13:50</div>
+            <div class="event-icon"><i class="fas fa-comments"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">Third Panel Discussion</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+          <div class="event-block">
+            <div class="event-time">10:30-11:20</div>
+            <div class="event-icon"><i class="fas fa-book"></i></div>
+            <div class="event-details">
+              <h3 class="event-title">First Panel Discussion</h3>
+              <p class="event-desc"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about reveal" aria-label="About TOK Fest">
+        <div style="display:flex; justify-content:space-between; gap:18px; align-items:flex-start; flex-wrap:wrap;">
+          <div style="flex:1; min-width:280px;">
+            <h2 style="margin:0 0 10px 0;">About TOK Fest</h2>
+            <p class="about-text" style="margin:0; color:#07334a; max-width:60ch;">TOK Fest is an immersive event designed to explore the nature of knowledge and its implications across disciplines. We ignite critical thinking, creativity, and open-mindedness through talks, panels, and interactive activities.</p>
+          </div>
+
+          <div style="width:340px;">
+            <div class="about-stats">
+              <div class="statbox">
+                <div class="value">First Time Event</div>
+                <div class="label" style="color:var(--muted); font-weight:700;">Hosted by Students</div>
+              </div>
+              <div class="statbox">
+                <div class="value">6+</div>
+                <div class="label" style="color:var(--muted); font-weight:700;">Speakers</div>
+              </div>
+              <div class="statbox">
+                <div class="value">400+</div>
+                <div class="label" style="color:var(--muted); font-weight:700;">Participants</div>
+              </div>
+              <div class="statbox">
+                <div class="value">Event location</div>
+                <div class="label" style="color:var(--muted); font-weight:700;">GIIS Smart Campus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- REGISTER -->
+      <section class="register reveal" id="register" aria-label="Registration">
+        <div style="display:flex; gap:18px; align-items:stretch; flex-wrap:wrap;">
+          <div style="flex:1; min-width:260px;" class="glass-card">
+            <h2 style="margin:0 0 8px;">Register Now</h2>
+            <p style="margin:0 0 12px; color:var(--muted);">Secure your spot at the premier knowledge exploration event of the year.</p>
+            <form id="registerForm" class="register-form" onsubmit="return onSubmitRegister(event);">
+              <div class="form-group">
+                <input id="rname" type="text" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <input id="remail" type="email" placeholder="Email Address" required>
+              </div>
+              <div class="form-group">
+                <input id="rinst" type="text" placeholder="Institution / Organization">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Registration</button>
+            </form>
+          </div>
+
+          <div style="flex:1; min-width:260px;" class="glass-card">
+            <h3 style="margin-top:0;">Why attend?</h3>
+            <ul style="margin:8px 0 0 18px; color:var(--muted);">
+              <li>Top speakers & panelists</li>
+              <li>Hands-on interactive sessions</li>
+              <li>Networking & community</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQs -->
+      <section class="faqs reveal" aria-label="FAQs">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h2 style="margin:0;">FAQs</h2>
+            <p style="margin:6px 0 0; color:var(--muted);">Find answers to common questions</p>
+          </div>
+        </div>
+
+        <div style="margin-top:12px; display:grid; gap:12px;">
+          <div class="faq">
+            <button class="faq-question" aria-expanded="false"><span>What is TOK Fest?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>TOK Fest is a gathering of curious minds exploring the Theory of Knowledge through engaging talks, panels, and interactive sessions designed to challenge perspectives and expand understanding.</p></div>
+          </div>
+
+          <div class="faq">
+            <button class="faq-question" aria-expanded="false"><span>Is it free to attend?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>Yes, the event is free for registered students and educators. Registration secures your spot.</p></div>
+          </div>
+
+          <div class="faq">
+            <button class="faq-question" aria-expanded="false"><span>Will sessions be recorded?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p>Key sessions will be recorded and made available to registered participants for a limited time after the event.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact reveal" aria-label="Contact">
+        <div class="contact-container">
+          <div class="glass-card contact-info">
+            <h2 style="margin:0 0 8px;">Contact Us</h2>
+            <p style="margin:0 0 8px; color:var(--muted);">Reach out with questions or partnership inquiries.</p>
+            <div style="display:flex; gap:12px; flex-direction:column;">
+              <div style="display:flex; gap:8px; align-items:center;"><i class="fas fa-envelope"></i><span>contact@tokfest.org</span></div>
+              <div style="display:flex; gap:8px; align-items:center;"><i class="fas fa-phone"></i><span>+1 (555) 123-4567</span></div>
+            </div>
+
+            <div class="socials" style="margin-top:18px;">
+              <a class="social-icon" href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a class="social-icon" href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a class="social-icon" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a class="social-icon" href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+
+          <div class="glass-card contact-form">
+            <form id="contactForm" onsubmit="return onSubmitContact(event);">
+              <div class="form-group"><input id="cname" type="text" placeholder="Your Name" required></div>
+              <div class="form-group"><input id="cemail" type="email" placeholder="Your Email" required></div>
+              <div class="form-group"><textarea id="cmessage" placeholder="Your Message" required></textarea></div>
+              <button class="btn btn-primary" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer reveal" role="contentinfo">
+        <div style="display:flex; justify-content:center; gap:16px; align-items:center; flex-direction:column;">
+          <img src="logo.png" alt="TOK Fest" style="width:68px; height:68px; border-radius:12px;" onerror="this.style.visibility='hidden'">
+          <div style="display:flex; gap:12px; color:var(--muted);">
+            <a href="#">Privacy Policy</a> • <a href="#">Terms</a> • <a href="#">Code of Conduct</a>
+          </div>
+          <div style="color:var(--muted); margin-top:6px;">&copy; 2025 TOK FEST. All rights reserved.</div>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Theme toggle -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle theme">🌙</button>
+  </div>
+
+  <script>
+    /* -------------------------
+       Utilities & interaction
+       ------------------------- */
+
+    // Reveal on scroll
+    (function(){
+      const revealEls = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => obs.observe(el));
+      } else {
+        // fallback
+        revealEls.forEach(el => el.classList.add('visible'));
+      }
+    })();
+
+    // Participant counter animation
+    (function(){
+      const el = document.getElementById('participant-counter');
+      const target = 400; // change to real number if you want
+      let current = 0;
+      const duration = 1800;
+      const start = performance.now();
+      function step(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const val = Math.floor(eased * target);
+        if (el) el.textContent = val.toLocaleString();
+        if (progress < 1) requestAnimationFrame(step);
+        else if (el) el.textContent = target.toLocaleString() + '+';
+      }
+      // start when visible
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) { requestAnimationFrame(step); io.disconnect(); }
+        });
+      }, { threshold:0.3 });
+      io.observe(el);
+    })();
+
+    // FAQ accordion
+    (function(){
+      document.querySelectorAll('.faq').forEach(f => {
+        const btn = f.querySelector('.faq-question');
+        const panel = f.querySelector('.faq-answer');
+        btn.addEventListener('click', () => {
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          document.querySelectorAll('.faq .faq-question').forEach(b => b.setAttribute('aria-expanded','false'));
+          document.querySelectorAll('.faq .faq-answer').forEach(p => p.style.maxHeight = null);
+          if (!expanded) {
+            btn.setAttribute('aria-expanded','true');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+          } else {
+            btn.setAttribute('aria-expanded','false');
+            panel.style.maxHeight = null;
+          }
+        });
+      });
+    })();
+
+    // Simple parallax on speaker cards (pointer move)
+
+    // Theme toggle (light/dark)
+    (function(){
+      const btn = document.getElementById('themeToggle');
+      const root = document.documentElement;
+      function setDark(dark){
+        if (dark) {
+          root.style.setProperty('--bg', 'linear-gradient(180deg,#071022 0%, #071826 100%)');
+          root.style.setProperty('--glass', 'rgba(10,18,28,0.45)');
+          root.style.setProperty('--glass-strong', 'rgba(10,18,28,0.6)');
+          root.style.setProperty('--muted', '#9fb0c4');
+          root.style.setProperty('--primary', '#4ea8ff');
+          btn.textContent = '☀️';
+        } else {
+          root.style.setProperty('--bg', 'linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)');
+          root.style.setProperty('--glass', 'rgba(255,255,255,0.55)');
+          root.style.setProperty('--glass-strong', 'rgba(255,255,255,0.72)');
+          root.style.setProperty('--muted', '#6b7280');
+          root.style.setProperty('--primary', '#007aff');
+          btn.textContent = '🌙';
+        }
+      }
+      // initial
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let dark = localStorage.getItem('tok-theme') ? localStorage.getItem('tok-theme') === 'dark' : prefersDark;
+      setDark(dark);
+      btn.addEventListener('click', () => {
+        dark = !dark;
+        setDark(dark);
+        localStorage.setItem('tok-theme', dark ? 'dark' : 'light');
+      });
+    })();
+
+    // Form submit stubs
+    function onSubmitRegister(e){
+      e.preventDefault();
+      const name = document.getElementById('rname').value.trim();
+      const email = document.getElementById('remail').value.trim();
+      // Placeholder feedback (replace with real submission)
+      alert('Thanks ' + (name||'there') + '! Registration saved (demo). We would email ' + email + '.');
+      e.target.reset();
+      return false;
+    }
+    function onSubmitContact(e){
+      e.preventDefault();
+      alert('Message sent (demo). We will reply to ' + (document.getElementById('cemail').value || 'your email') + '.');
+      e.target.reset();
+      return false;
+    }
+
+    // Accessibility: close any open FAQ panels on escape
+    document.addEventListener('keydown', (ev) => {
+      if (ev.key === 'Escape') {
+        document.querySelectorAll('.faq .faq-question').forEach(b => b.setAttribute('aria-expanded','false'));
+        document.querySelectorAll('.faq .faq-answer').forEach(p => p.style.maxHeight = null);
+      }
+    });
+
+  </script>
+</body>
+</html>
