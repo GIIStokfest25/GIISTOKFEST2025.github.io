@@ -43,16 +43,7 @@
       display:flex;
       flex-direction:column;
     }
-    header{ position:fixed; top:18px; left:50%; transform:translateX(-50%); width:92%; max-width:1200px; z-index:40; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.40));
-      backdrop-filter: blur(8px) saturate(120%);
-      border-radius:999px;
-      padding:8px 12px;
-      box-shadow:var(--card-shadow);
-      border: 1px solid var(--glass-border);
-    }
+    
     .brand img{ width:42px; height:42px; object-fit:cover; border-radius:8px; }
     .brand h1{ font-size:16px; margin:0; font-weight:700; letter-spacing:0.2px; }
     nav{ display:flex; gap:12px; align-items:center; }
@@ -255,23 +246,39 @@
   <div class="page">
 
     <header role="banner" aria-label="TOK Fest header"
-  style="background-color: rgba(26, 26, 26, 0.7);
-         padding: 15px;
-         position: sticky;
-         top: 0;
-         margin: 0;
-         z-index: 1000;
-         border-radius: 12px;">
-  <div class="brand" aria-hidden="false">
-    <img src="logo.png" alt="TOK Fest logo" onerror="this.style.visibility='hidden'">
-    <h1 style="color: white;">TOK FEST</h1>
-  </div>
+      style="background-color: rgba(26,26,26,0.8);
+             padding: 15px 5%;
+             position: sticky;
+             top: 0;
+             width: 100%;
+             z-index: 1000;
+             display:flex;
+             justify-content: space-between;
+             align-items: center;
+             flex-wrap: wrap;
+             box-sizing:border-box;
+             border-radius: 0 0 12px 12px;">
+      
+      <div class="brand" style="display:flex; align-items:center; gap: 10px;">
+        <img src="logo.png" alt="TOK Fest logo" style="height:50px; width:auto;" onerror="this.style.display='none'">
+        <h1 style="color:white; font-size:1.8rem; margin:0;">TOK FEST</h1>
+      </div>
 
-  <nav aria-label="Main navigation">
-    <button class="pill" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
-    <button class="pill" onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">Schedule</button>
-  </nav>
-</header>
+      <nav aria-label="Main navigation" style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="pill" 
+                style="padding:10px 20px; border:none; border-radius:20px; background:#007BFF; color:white; cursor:pointer; font-size:1rem;"
+                onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">
+          Register
+        </button>
+        <button class="pill"
+                style="padding:10px 20px; border:none; border-radius:20px; background:#28a745; color:white; cursor:pointer; font-size:1rem;"
+                onclick="document.getElementById('schedule').scrollIntoView({behavior:'smooth'})">
+          Schedule
+        </button>
+      </nav>
+    </header>
+
+  
     
     
 
@@ -286,7 +293,7 @@
         <div class="glass-card hero-left" role="region" aria-labelledby="heroTitle">
           <h2 id="heroTitle">TOK Fest</h2>
           <h1>Exploring Knowledge <br><span style="color:var(--muted); font-weight:600;">Through Perspectives — 2025</span></h1>
-          <p class="lead">A one-day immersive event where speakers, panels and interactive sessions challenge how we know what we know. Open for students and educators.</p>
+          <p style="color: var(--text-color);" class="lead">A one-day immersive event where speakers, panels and interactive sessions challenge how we know what we know. Open for students and educators.</p>
 
           <div class="event-meta" aria-hidden="false">
             <div class="meta-pill"><i class="fas fa-calendar-alt"></i> <span>August 18, 2025</span></div>
@@ -306,51 +313,50 @@
 
         <!-- Right: stats -->
         <aside class="hero-right" role="complementary" aria-label="Event statistics">
+          
           <div class="glass-card stat" aria-hidden="true">
             <div>
-              <div class="label">Expected Attendees</div>
+              <div class="label" style="color: var(--text-color);" >First Time Event</div>
+            </div>
+            <div style="text-align:right;">
+              <div class="label" style="color: var(--text-color);" >Participants</div>
+              <div class="num"style="color: var(--text-color);" >400+</div>
+            </div>
+          </div>
+          
+          <div class="glass-card stat" aria-hidden="true">
+            <div>
+              <div class="label"style="color: var(--text-color);" >Expected Attendees</div>
               <div class="num" style="font-size:28px; color:var(--primary); font-weight:900;">400+</div>
             </div>
             <div style="text-align:right;">
-              <div class="label">Speakers</div>
+              <div class="label" style="color: var(--text-color);" >Speakers</div>
               <div class="num">6+</div>
             </div>
           </div>
 
-          <div class="glass-card stat" aria-hidden="true">
-            <div>
-              <div class="label">First Time Event</div>
-            </div>
-            <div style="text-align:right;">
-              <div class="label">Participants</div>
-              <div class="num">400+</div>
-            </div>
-          </div>
+          
 
-          <div class="glass-card" style="padding:12px; display:flex; align-items:center; justify-content:space-between;">
+          <div class="glass-card stat" style="display:flex; align-items:center; justify-content:space-between; padding:12px;" aria-hidden="true">
             <div>
-              <div style="font-weight:800; font-size:16px;">Quick Links</div>
-              <div style="color:var(--muted); font-size:13px;">Schedule • Speakers • FAQs</div>
+              <div class="label" style="font-weight:800; font-size:16px; color: var(--text-color);">Quick Links</div>
+              <div class="label" style="color: var(--muted); font-size:13px;" style="color: var(--text-color);" >Schedule • Speakers • FAQs</div>
             </div>
             <div style="display:flex; gap:8px;">
-              <button class="btn btn-secondary" onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">Register</button>
+              <button class="btn btn-secondary" 
+                      onclick="document.getElementById('register').scrollIntoView({behavior:'smooth'})">
+                Register
+              </button>
             </div>
-          </div>
-        </aside>
-      </div>
+          </div>          
     </section>
 
     <main role="main" class="container">
 
-      <!-- PARTICIPANT COUNTER -->
-      <section class="counter-section reveal" aria-label="Participant counter">
-        <h2>Total Participants</h2>
-        <div id="participant-counter" class="counter" aria-live="polite">0</div>
-        <p class="counter-subtitle">Join our growing community of knowledge seekers</p>
-      </section>
 
-      <!-- SPEAKERS GRID -->
-      <section class="reveal" aria-label="Guest speakers">
+      
+       <!-- SPEAKERS GRID -->
+       <section style="color: var(--text-color);"class="reveal" aria-label="Guest speakers">
         <h2 style="margin:0 0 12px;">Guest Speakers</h2>
         <div class="speakers">
           <!-- speaker cards: replace src with your images -->
@@ -358,7 +364,7 @@
             <img src="rincy-shamim.png" alt="Rincy Shamim" onerror="this.src='https://via.placeholder.com/160x160?text=Rincy'">
             <div class="speaker-info">
               <h3>Rincy Shamim</h3>
-              <p>Guest Speaker — AI & Ethics</p>
+              <p style="color: var(--text-color);">Guest Speaker — AI & Ethics</p>
             </div>
           </div>
 
@@ -366,7 +372,7 @@
             <img src="shamim-basheer.png" alt="Shamim Basheer" onerror="this.src='https://via.placeholder.com/160x160?text=Shamim'">
             <div class="speaker-info">
               <h3>Shamim Basheer</h3>
-              <p>Guest Speaker — Epistemology</p>
+              <p style="color: var(--text-color);">Guest Speaker — Epistemology</p>
             </div>
           </div>
 
@@ -374,7 +380,7 @@
             <img src="janice-see.png" alt="Janice See" onerror="this.src='https://via.placeholder.com/160x160?text=Janice'">
             <div class="speaker-info">
               <h3>Janice See</h3>
-              <p>Guest Speaker — Education</p>
+              <p style="color: var(--text-color);">Guest Speaker — Education</p>
             </div>
           </div>
 
@@ -382,7 +388,7 @@
             <img src="rahul-singh.png" alt="Rahul Singh" onerror="this.src='https://via.placeholder.com/160x160?text=Rahul'">
             <div class="speaker-info">
               <h3>Rahul Singh</h3>
-              <p>Guest Speaker — Technology & Society</p>
+              <p style="color: var(--text-color);">Guest Speaker — Technology & Society</p>
             </div>
           </div>
 
@@ -390,17 +396,40 @@
             <img src="jacob-mok.png" alt="Jacob Mok" onerror="this.src='https://via.placeholder.com/160x160?text=Jacob'">
             <div class="speaker-info">
               <h3>Jacob Mok</h3>
-              <p>Guest Speaker — Media Studies</p>
+              <p style="color: var(--text-color);">Guest Speaker — Media Studies</p>
             </div>
           </div>
         </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <!-- PARTICIPANT COUNTER -->
+      <section class="counter-section reveal" aria-label="Participant counter">
+        <h2 style="color: var(--text-color);" >Total Participants</h2>
+        <div id="participant-counter" class="counter" aria-live="polite">0</div>
+        <p style="color: var(--text-color);" class="counter-subtitle">Join our growing community of knowledge seekers</p>
       </section>
 
       <!-- SCHEDULE -->
       <section class="schedule reveal" id="schedule" aria-label="Event schedule">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <h2 style="margin:0;">Event Flow</h2>
+            <h2 style="color: var(--text-color);" style="margin:0;" >Event Flow</h2>
             <p style="margin:6px 0 0; color:var(--muted);">A day of knowledge exploration</p>
           </div>
         </div>
@@ -466,10 +495,10 @@
             </div>
           </div>
           <div class="event-block">
-            <div class="event-time">10:30-11:20</div>
+            <div class="event-time">13:50-15:00</div>
             <div class="event-icon"><i class="fas fa-book"></i></div>
             <div class="event-details">
-              <h3 class="event-title">First Panel Discussion</h3>
+              <h3 class="event-title">Student Exhibition </h3>
               <p class="event-desc"></p>
             </div>
           </div>
@@ -480,8 +509,8 @@
       <section class="about reveal" aria-label="About TOK Fest">
         <div style="display:flex; justify-content:space-between; gap:18px; align-items:flex-start; flex-wrap:wrap;">
           <div style="flex:1; min-width:280px;">
-            <h2 style="margin:0 0 10px 0;">About TOK Fest</h2>
-            <p class="about-text" style="margin:0; color:#07334a; max-width:60ch;">TOK Fest is an immersive event designed to explore the nature of knowledge and its implications across disciplines. We ignite critical thinking, creativity, and open-mindedness through talks, panels, and interactive activities.</p>
+            <h2 style="color: var(--text-color);" style="margin:0 0 10px 0;">About TOK Fest</h2>
+            <p style="color: var(--text-color);" class="about-text" style="margin:0; color:#07334a; max-width:60ch;">TOK Fest is an immersive event designed to explore the nature of knowledge and its implications across disciplines. We ignite critical thinking, creativity, and open-mindedness through talks, panels, and interactive activities.</p>
           </div>
 
           <div style="width:340px;">
@@ -511,7 +540,7 @@
       <section class="register reveal" id="register" aria-label="Registration">
         <div style="display:flex; gap:18px; align-items:stretch; flex-wrap:wrap;">
           <div style="flex:1; min-width:260px;" class="glass-card">
-            <h2 style="margin:0 0 8px;">Register Now</h2>
+            <h2 style="color: var(--text-color);" style="margin:0 0 8px;">Register Now</h2>
             <p style="margin:0 0 12px; color:var(--muted);">Secure your spot at the premier knowledge exploration event of the year.</p>
             <form id="registerForm" class="register-form" onsubmit="return onSubmitRegister(event);">
               <div class="form-group">
@@ -528,7 +557,7 @@
           </div>
 
           <div style="flex:1; min-width:260px;" class="glass-card">
-            <h3 style="margin-top:0;">Why attend?</h3>
+            <h3 style="color: var(--text-color);" style="margin-top:0;">Why attend?</h3>
             <ul style="margin:8px 0 0 18px; color:var(--muted);">
               <li>Top speakers & panelists</li>
               <li>Hands-on interactive sessions</li>
@@ -542,25 +571,25 @@
       <section class="faqs reveal" aria-label="FAQs">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div>
-            <h2 style="margin:0;">FAQs</h2>
+            <h2 style="color: var(--text-color);" style="margin:0;">FAQs</h2>
             <p style="margin:6px 0 0; color:var(--muted);">Find answers to common questions</p>
           </div>
         </div>
 
         <div style="margin-top:12px; display:grid; gap:12px;">
           <div class="faq">
-            <button class="faq-question" aria-expanded="false"><span>What is TOK Fest?</span><i class="fas fa-chevron-down"></i></button>
-            <div class="faq-answer"><p>TOK Fest is a gathering of curious minds exploring the Theory of Knowledge through engaging talks, panels, and interactive sessions designed to challenge perspectives and expand understanding.</p></div>
+            <button style="color: var(--text-color);" class="faq-question" aria-expanded="false"><span>What is TOK Fest?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p style="color: var(--text-color);">TOK Fest is a gathering of curious minds exploring the Theory of Knowledge through engaging talks, panels, and interactive sessions designed to challenge perspectives and expand understanding.</p></div>
           </div>
 
           <div class="faq">
-            <button class="faq-question" aria-expanded="false"><span>Is it free to attend?</span><i class="fas fa-chevron-down"></i></button>
-            <div class="faq-answer"><p>Yes, the event is free for registered students and educators. Registration secures your spot.</p></div>
+            <button style="color: var(--text-color);" class="faq-question" aria-expanded="false"><span>Is it free to attend?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p style="color: var(--text-color);">Yes, the event is free for registered students and educators. Registration secures your spot.</p></div>
           </div>
 
           <div class="faq">
-            <button class="faq-question" aria-expanded="false"><span>Will sessions be recorded?</span><i class="fas fa-chevron-down"></i></button>
-            <div class="faq-answer"><p>Key sessions will be recorded and made available to registered participants for a limited time after the event.</p></div>
+            <button  style="color: var(--text-color);" class="faq-question" aria-expanded="false"><span>Will sessions be recorded?</span><i class="fas fa-chevron-down"></i></button>
+            <div class="faq-answer"><p style="color: var(--text-color);">Key sessions will be recorded and made available to registered participants for a limited time after the event.</p></div>
           </div>
         </div>
       </section>
@@ -569,11 +598,11 @@
       <section class="contact reveal" aria-label="Contact">
         <div class="contact-container">
           <div class="glass-card contact-info">
-            <h2 style="margin:0 0 8px;">Contact Us</h2>
-            <p style="margin:0 0 8px; color:var(--muted);">Reach out with questions or partnership inquiries.</p>
+            <h2 style="color: var(--text-color);" style="margin:0 0 8px;">Contact Us</h2>
+            <p style="color: var(--text-color);" style="margin:0 0 8px; color:var(--muted);">Reach out with questions or partnership inquiries.</p>
             <div style="display:flex; gap:12px; flex-direction:column;">
-              <div style="display:flex; gap:8px; align-items:center;"><i class="fas fa-envelope"></i><span>tokfest25@gmail.com</span></div>
-              <div style="display:flex; gap:8px; align-items:center;"><i class="fas fa-phone"></i><span>+65-9480 7641</span></div>
+              <div style="color: var(--text-color);" style="display:flex; gap:8px; align-items:center;"><i class="fas fa-envelope"></i><span>tokfest25@gmail.com</span></div>
+              <div style="color: var(--text-color);" style="display:flex; gap:8px; align-items:center;"><i class="fas fa-phone"></i><span>+65-9480 7641</span></div>
             </div>
 
             <div class="socials" style="margin-top:18px;">
@@ -689,6 +718,7 @@
           root.style.setProperty('--glass-strong', 'rgba(10,18,28,0.6)');
           root.style.setProperty('--muted', '#9fb0c4');
           root.style.setProperty('--primary', '#4ea8ff');
+          root.style.setProperty('--text-color', 'white'); // <-- add this
           btn.textContent = '☀️';
         } else {
           root.style.setProperty('--bg', 'linear-gradient(180deg,#f6f8fb 0%, #eef2f7 100%)');
@@ -696,6 +726,7 @@
           root.style.setProperty('--glass-strong', 'rgba(255,255,255,0.72)');
           root.style.setProperty('--muted', '#6b7280');
           root.style.setProperty('--primary', '#007aff');
+          root.style.setProperty('--text-color', 'black'); // <-- add this
           btn.textContent = '🌙';
         }
       }
